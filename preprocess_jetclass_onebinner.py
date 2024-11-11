@@ -311,8 +311,8 @@ if __name__ == "__main__":
     from argparse import ArgumentParser
 
     parser = ArgumentParser()
-    parser.add_argument("--class_label", type=int, choices=[0, 1])
-    parser.add_argument("--tag", type=str)
+    parser.add_argument("--class_label", type=int, choices=[0, 1],default=1)
+    parser.add_argument("--tag", type=str, default='1Mfromeach_403030')
     parser.add_argument("--nBins", "-n", type=int, nargs=3)
     parser.add_argument("--input_file", "-I", type=str)
     parser.add_argument("--lower_q", "-l", type=float, default=0.001)
