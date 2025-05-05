@@ -57,7 +57,7 @@ def load_data(path1,path2, n_events):
                                 num_const=args.num_const,
                                 reverse=args.reverse,
                                 limit_nconst=args.limit_const)
-    labels = torch.ones(len(x))
+    labels = torch.zeros(len(x))
 
     df = pd.read_hdf(path2, 'discretized', stop=n_events)
     x1, padding_mask1, _ = preprocess_dataframe(df, num_features=num_features,
@@ -69,7 +69,7 @@ def load_data(path1,path2, n_events):
                                 
                                 
                                 
-    labels = torch.concat((labels, torch.zeros(len(x1))))
+    labels = torch.concat((labels, torch.ones(len(x1))))
     x = torch.concat((x, x1), dim=0)
     padding_mask = torch.concat((padding_mask, padding_mask1), dim=0)
 
@@ -78,7 +78,7 @@ def load_data(path1,path2, n_events):
         train_dataset,
         batch_size=args.batch_size,
         num_workers=args.num_workers,
-        shuffle=True,
+        shuffle=False,
     )
     print(x.shape)
     return train_loader
